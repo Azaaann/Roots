@@ -38,6 +38,7 @@
   let currentSrc = null;
 
   const stripDiacritics = (t) => t.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "");
+  const normRoot = (t) => stripDiacritics(t).replace(/[\s()\[\]]/g, "");
   const isValidRoot = (t) => {
     const e = stripDiacritics(t);
     return !!e && !/[^ء-ي* -]/.test(e);
@@ -104,10 +105,10 @@
       }
      } else if (book.type === "alphabetical") {
       const section = alphaIndex.find(
-        (s) => s.src === src && stripDiacritics(s.title.replace(/^\(|\)$/g, "")) === stripDiacritics(word)
+        (s) => s.src === src && normRoot(s.title) === normRoot(word)
       );
       if (section) {
-        body = `<div class="result-hding">${escapeHtml(section.title)}</div><div class="result-body">${highlightRoot(prepData(hlCitation(cleanContent(section.content))), word)}</div>`;
+        body = `<div class="result-hding">${escapeHtml(section.title)}</div><div class="result-body">${highlightRoot(prepData(hlCitation(cleanContent(section.content))), normRoot(word))}</div>`;
       } else {
         body = '<p class="bg-warning">عفواً، لا مادة لهذا العنوان.</p>';
       }
@@ -135,7 +136,7 @@
       c(".next-item .diff").textContent = next ? ` (${next})` : "";
     } else {
       const idx = alphaIndex.findIndex(
-        (s) => s.src === src && stripDiacritics(s.title.replace(/^\(|\)$/g, "")) === stripDiacritics(word)
+        (s) => s.src === src && normRoot(s.title) === normRoot(word)
       );
       const prev = idx > 0 ? alphaIndex[idx - 1] : null;
       const next = idx < alphaIndex.length - 1 ? alphaIndex[idx + 1] : null;
@@ -156,7 +157,7 @@
       if (target) renderWord(currentSrc, target);
     } else {
        const idx = alphaIndex.findIndex(
-        (s) => s.src === currentSrc && stripDiacritics(s.title.replace(/^\(|\)$/g, "")) === stripDiacritics(currentWord)
+        (s) => s.src === currentSrc && normRoot(s.title) === normRoot(currentWord)
       );
       const target = alphaIndex[idx + dir];
       if (target) renderWord(currentSrc, target.title);
@@ -215,7 +216,7 @@
         if (matches.length) groups[src] = { book, type: "root", items: matches };
        } else if (book.type === "alphabetical" && book.sections) {
         const matches = book.sections
-          .filter((s) => stripDiacritics(s.title.replace(/^[\[\(]|[)\]]$/g, "")).includes(q))
+          .filter((s) => normRoot(s.title).includes(q))
           .slice(0, 8);
         if (matches.length) groups[src] = { book, type: "alpha", items: matches };
       }
@@ -229,7 +230,7 @@
        for (const item of items) {
         const rawTitle = type === "root" ? item : item.title;
          const text = rawTitle.replace(/^[\[\(]|[)\]]$/g, "");
-        const display = stripDiacritics(text).replace(q, `<mark>${q}</mark>`);
+        const display = normRoot(text).replace(q, `<mark>${q}</mark>`);
         html += `<li class="word-item"><a href="#" data-src="${src}" data-word="${escapeHtml(text)}">${display}</a></li>`;
       }
       html += "</ul>";
@@ -260,7 +261,7 @@
         has = wordList.includes(w);
       }
       if (book.type === "alphabetical" && book.sections) {
-        has = book.sections.some((s) => stripDiacritics(s.title.replace(/^[\[\(]|[)\]]$/g, "")) === w);
+        has = book.sections.some((s) => normRoot(s.title) === w);
       }
       link.classList.toggle("disabled", !has);
       link.href = has ? `#${src}/${w}` : "#";
