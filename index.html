@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google" content="notranslate">
+<meta name="theme-color" content="#fffdf7">
+<title>الباحث الجذري — معاجم</title>
+<link rel="stylesheet" href="assets/tafsir.css">
+<svg hidden><defs>
+<symbol id="icon-clear" viewBox="0 0 12 16"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></symbol>
+<symbol id="icon-copy" viewBox="0 0 24 24"><path d="M19 21V7H8v14h11zm0-16c1 0 2 1 2 2v14c0 1-1 2-2 2H8c-1 0-2-1-2-2V7c0-1 1-2 2-2h11zm-3-4v2H4v14H2V3c0-1 1-2 2-2h12z"/></symbol>
+<symbol id="icon-question" viewBox="0 0 20 20"><path d="M10 .4a9.6 9.6 0 1 0 0 19.2A9.6 9.6 0 0 0 10 .4zm-.2 15.2c-.8 0-1.3-.6-1.3-1.4 0-.7.6-1.3 1.3-1.3.9 0 1.4.6 1.4 1.4 0 .8-.6 1.3-1.4 1.3zm3.3-6.5l-1 1-.6.3-.6.7v.6H8.6c0-.8 0-1.3.3-1.6.5-.6 1.6-1.3 1.6-1.3l.4-.4.3-.8c0-.3 0-.6-.2-1-.2-.2-.6-.3-1.1-.3-.5 0-.9.1-1 .5a2 2 0 0 0-.4 1V8H6.4c0-1.4.5-2.4 1.4-3a4.8 4.8 0 0 1 4.8.3c.7.5 1 1.3 1 2.3 0 .5-.1 1-.5 1.6z"/></symbol>
+</defs></svg>
+</head>
+<body>
+<main class="container">
+  <div class="header text-center">
+    <h1>الغريب والمعاجم</h1>
+    <button class="btn" id="keyboard-btn" title="لوحة المفاتيح العربية"><svg class="icon" viewBox="0 0 24 24"><path d="M20 5H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 14H5v-2h6v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm0-4H5V7h14v2z"/></svg></button>
+  </div>
+  <nav id="section-tabs">
+    <button>بحث</button>
+    <button>علوم</button>
+    <button>مصاحف</button>
+    <button class="active">معاجم</button>
+  </nav>
+  <div class="tab-content">
+    <div id="quran-search-grp" class="tab-pane fade">
+      <div id="quran-search-row">
+        <section class="search-cont">
+          <div>
+            <input autofocus type="text" class="search-input" id="quran-search" autocomplete="off" placeholder="بحث">
+            <button class="input-btn" id="filter-btn"><svg class="icon icon-filter"><use xlink:href="#icon-filter"></use></svg></button>
+          </div>
+        </section>
+        <div class="search-bottom"><div id="quran-results-count"></div></div>
+      </div>
+      <ol id="quran-results"><li id="enter-data-msg">أدخل كلمات البحث أو أضف قيدًا.</li></ol>
+    </div>
+
+    <div id="ulum-grp" class="tab-pane fade">
+      <ol id="quran-results"><li id="enter-data-msg">لا توجد مصادر.</li></ol>
+    </div>
+
+    <div id="masahif-grp" class="tab-pane fade">
+      <ol id="quran-results"><li id="enter-data-msg">لا توجد مصاحف.</li></ol>
+    </div>
+
+    <div id="word-search-grp" class="tab-pane fade active">
+      <div id="word-search-row">
+        <div class="suggester-cont">
+          <button class="btn input-btn">
+            <svg class="icon icon-clear"><use xlink:href="#icon-clear"></use></svg>
+            <svg class="icon icon-random"><use xlink:href="#icon-question"></use></svg>
+          </button>
+          <input type="text" class="form-control" id="word-search" autocomplete="off" placeholder="الجذر أو الكلمة">
+          <span class="spinner input-spinner" hidden></span>
+        </div>
+        <div class="suggester"></div>
+      </div>
+      <div class="row word-search-list">
+        <div>
+          <div class="list-group">
+            <a data-src="mukhtar-alsihah" href="#">
+              <div class="src-title">مختار الصحاح</div>
+              <div class="short-title">مختار الصحاح</div>
+              <div class="author">زين الدين الرازي (٦٦٦ هـ)</div>
+              <div class="src-info">مختصر الصحاح للجوهري — بحث بالجذر</div>
+            </a>
+            <a data-src="sahih-taj" href="#">
+              <div class="short-title">الصحاح</div>
+              <div class="author">الجوهري (٣٩٣ هـ)</div>
+              <div class="src-info">نحو ٥ مجلدات</div>
+            </a>
+            <a data-src="nihayat-gharib" href="#">
+              <div class="short-title">النهاية في غريب الحديث</div>
+              <div class="author">ابن الأثير (ت ٦٠٦ هـ)</div>
+              <div class="src-info">٥ أجزاء — بحث بالحرف</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="pg-footer"></footer>
+</main>
+
+<div class="modal" id="modal" aria-hidden="true" hidden>
+  <div class="modal-overlay" data-modal-close>
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="modal-header">
+        <h2 class="modal-title"></h2>
+        <button class="modal-close" aria-label="أغلق" data-modal-close>✕</button>
+      </header>
+      <main class="modal-body"></main>
+      <footer class="modal-footer">
+        <button class="btn btn-default pull-left" data-modal-close>أغلق</button>
+        <div id="next-prev-btns">
+          <button class="btn btn-default prev-item" title="السابق">→ <span class="diff"></span></button>
+          <button class="btn btn-default next-item" title="التالي"><span class="diff"></span> ←</button>
+        </div>
+        <div id="action-btns">
+          <button class="btn btn-info" id="toggle-diacritics"><span class="hidden-xs">التشكيل</span> <span class="visible-xs diacritic-big">ُ</span></button>
+          <button class="btn btn-info" id="copy-btn"><span class="hidden-xs copy-lbl">نسخ الجميع</span><svg class="icon icon-copy visible-xs"><use xlink:href="#icon-copy"></use></svg></button>
+          <button class="btn btn-info" id="font-plus">ا+</button>
+          <button class="btn btn-info" id="font-minus">ا-</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="fix-scroll-overlay"></div>
+<div class="arabic-keyboard" id="arabic-keyboard">
+  <div class="kb-row">
+    <button class="kb-key" data-char="ض">ض</button>
+    <button class="kb-key" data-char="ص">ص</button>
+    <button class="kb-key" data-char="ث">ث</button>
+    <button class="kb-key" data-char="ق">ق</button>
+    <button class="kb-key" data-char="ف">ف</button>
+    <button class="kb-key" data-char="غ">غ</button>
+    <button class="kb-key" data-char="ع">ع</button>
+    <button class="kb-key" data-char="ه">ه</button>
+    <button class="kb-key" data-char="ح">ح</button>
+    <button class="kb-key" data-char="خ">خ</button>
+    <button class="kb-key" data-char="ج">ج</button>
+    <button class="kb-key" data-char="ش">ش</button>
+    <button class="kb-key wide" data-char=" ">space</button>
+  </div>
+  <div class="kb-row">
+    <button class="kb-key" data-char="س">س</button>
+    <button class="kb-key" data-char="ي">ي</button>
+    <button class="kb-key" data-char="ب">ب</button>
+    <button class="kb-key" data-char="ل">ل</button>
+    <button class="kb-key" data-char="ا">ا</button>
+    <button class="kb-key" data-char="ت">ت</button>
+    <button class="kb-key" data-char="ن">ن</button>
+    <button class="kb-key" data-char="م">م</button>
+    <button class="kb-key" data-char="ك">ك</button>
+    <button class="kb-key" data-char="ط">ط</button>
+    <button class="kb-key" data-char="ذ">ذ</button>
+    <button class="kb-key" data-char="د">د</button>
+    <button class="kb-key action" data-char="←">⌫</button>
+  </div>
+  <div class="kb-row">
+    <button class="kb-key action" data-char="،">،</button>
+    <button class="kb-key" data-char="ر">ر</button>
+    <button class="kb-key" data-char="ز">ز</button>
+    <button class="kb-key" data-char="و">و</button>
+    <button class="kb-key" data-char="ى">ى</button>
+    <button class="kb-key" data-char="ة">ة</button>
+    <button class="kb-key" data-char="إ">إ</button>
+    <button class="kb-key" data-char="أ">أ</button>
+    <button class="kb-key" data-char="ؤ">ؤ</button>
+    <button class="kb-key" data-char="ئ">ئ</button>
+    <button class="kb-key" data-char="ّ">ّ</button>
+    <button class="kb-key action" data-char="done">✓</button>
+  </div>
+</div>
+
+<div class="fix-scroll-overlay"></div>
+  <script src="data.js"></script>
+  <script>
+    // Runtime fix: replace _______ footnote markers with <br><br> for nihayat-gharib
+    if (typeof DICTIONARY !== 'undefined' && DICTIONARY.books && DICTIONARY.books['nihayat-gharib']) {
+      const book = DICTIONARY.books['nihayat-gharib'];
+      if (book.sections) {
+        book.sections.forEach(s => {
+          if (s.content) {
+            s.content = s.content.replace(/_{2,}\s*\([٠-٩]+\)\s*/g, '<br><br>');
+          }
+        });
+      }
+    }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
